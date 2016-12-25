@@ -1,0 +1,507 @@
+
+buildscript {
+
+    ext {
+        depManagementVersion = "0.6.1.RELEASE"
+
+        // Logging Libraries
+        log4jVersion = "1.2.17"
+        slf4jVersion = "1.6.3"
+        dropWizardVersion = "3.1.1"
+        dropWizardMetricsSpringVersion = "3.1.2"
+        dropWizardMetricsGraphiteVersion = "3.1.2"
+
+        // Spring/Camel/CXF/Tomcat Libraries
+        springVersion = "4.1.6.RELEASE"
+        springSecurityVersion = "4.0.2.RELEASE"
+        springBootVersion = "1.2.3.RELEASE"
+        springHateoasVersion = "0.16.0.RELEASE"
+        springPluginVersion = "1.1.0.RELEASE"
+        camelVersion = "2.15.2"
+        servletApiVersion = "2.5"
+        aspectjVersion = "1.8.0"
+        tomcatVersion = "7.0.50"
+//   tomcatVersion = "8.0.26"
+        cxfVersion = "3.1.4"
+        cxfApiVersion = "2.7.18"
+        wsdl2javaVersion = "0.8"
+        usg4jcoreVersion = "1.55"
+
+        // Internal Libraries
+        configurationVersion = "20160412"
+        communityauthVersion = "20160413"
+
+        // Utility Libraries
+        jodaVersion = "2.9.2"
+        guavaVersion = "16.0.1"
+        commonsLang3Version = "3.4"
+        reflectionsVersion = "0.9.9-RC1"
+        commonsBeanUtilsVersion = "1.9.2"
+        commonsCollections4Version = "4.0"
+        commonsCollectionsVersion = "3.2.1"
+        commonsGenericsCollectionsVersion = "4.01"
+        commonsMathVersion = "2.2"
+        commonsMath3Version = "3.5"
+        commonsValidator = "1.5.0"
+        commonsIOVersion = "2.4"
+        commonsFileUploadVersion="1.3.1"
+        commonsIOVersion="2.4"
+        lombokVersion = "1.16.6"
+        rsqlVersion = "2.0.0"
+        jsonPatch = "1.7"
+        jacksonVersion = "2.4.5"
+        jsonSimpleVersion = "1.1"
+        jcTreeVersion = "2.0.0"
+        xercesVersion = "2.11.0"
+        jaxbXjcVersion = "2.2.4"
+        apacheHttpClientVersion = "4.4.1"
+        jmsSpecVersion = "1.1@pom"
+        cglibNodepVersion = "3.2.0"
+        validationApiVersion = "1.1.0.Final"
+        hibernateValidatorVersion = "5.1.2.Final"
+        jirutkaValidatorVersion = "2.1.3"
+        mailVersion = "1.4.6"
+        spatial4jVersion = "0.4"
+        quartzVersion = "2.1.7"
+        quartzMongodbVersion = "2.0.0-rc1"
+        apacheBvalVersion = "1.1.1"
+        cdiVersion = "1"
+        jsr305Version = "2.0.1"
+        javersVersion = "1.3.2"
+        minaVersion = "2.0.4"
+        javacsvVersion = "2.0"
+        tripBreakingVersion = "1.0-SNAPSHOT"
+        csAtdVersion = "1.4"
+
+        // Translation Libraries
+        poiVersion = "3.8"
+        opencsvVersion = "2.3"
+        velocityVersion = "1.7"                      // todo: Change dependency on Spring Context 3.x
+        smooksVersion = "1.6"
+
+
+        // JMS Libraries
+        activemqVersion = "5.5.1"
+        wmqVersion = "7.5.0.3"
+
+        // Persistence Libraries
+        mongoVersion = "3.2.1"
+
+        // Test Libraries
+        embedMongoVersion = "avro-1.50.3"        // Test only
+        junitVersion = "4.11"               // Test only
+        mockitoVersion = "1.9.5"            // Test only
+        powermockVersion = "1.5.6"          // Test only
+        hamcrestVersion = "1.3"             // Test only
+        spockVersion = "0.7-groovy-2.0"     // Test only
+        groovyVersion = "2.3.9"             // Test only
+        dumbsterVersion = "1.9.0.2"         // Test only | Simple SMTP Server for mocking
+
+        estAssuredVersion = "2.3.2"        // Test only
+        xmlApisVersion = "1.4.01"           // Test only
+        jsonassertVersion = "1.2.3"         // Test only
+        jsonVersion = "20140107"            // Test only
+        jsonpathassertVersion = "0.9.1"     // Test only
+        seleniumVersion = "2.43.1"          // Test only
+        wiremockVersion = "1.55"            // Test only
+        awaitilityGroovyVersion = "1.6.5"   // Test only
+        mockFtpServerVersion = "2.6"        // Test only
+        embedVersion = "20160531"           // Test only
+        springTestVersion = "1.0.0.M2"      // Test only
+        asciidoctorVersion = "1.5.4"        // Test only
+
+
+        gebVersion = "0.10.0"
+        seleniumVersion = "2.53.0"
+        webdriverManagerVersion = "1.4.2"
+
+        // Rules
+        droolsVersion = "6.2.0.Final"
+
+        // Swagger will be included only with -Penv=dev in command line
+        springfoxSwaggerVersion = "2.4.0"
+        swaggerVersion = "1.5.6"
+
+
+        awaitilityVersion = "1.6.5"
+        osxPackageVersion = "2.2.6"
+        coberturaVersion = "2.2.2"
+        wagonHttpVersion = "2.6"
+        gradleGruntVersion = "0.9"
+        gradleTomcatVersion = "2.0"
+        gradleRestVersion = "0.3.2"
+        asciidoctorPluginVersion = "1.5.3"
+
+        // Build Constants
+        tiddlerDir = "$rootProject.buildDir.absolutePath/tid"
+        artifactsDir = "$buildDir/artifacts"
+
+
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    List awaitilityJar = ["com.jayway.awaitility:awaitility:${awaitilityVersion}"]
+    List apacheActiveMQ = ["org.apache.activemq:activemq-core:${activemqVersion}"]
+    List springBootPlugin = ["org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"]
+    List osPackagePlugin = ["com.netflix.nebula:gradle-ospackage-plugin:${osxPackageVersion}"]
+    List coberturaPlugin = ["net.saliman:gradle-cobertura-plugin:${coberturaVersion}"]
+    List deployerJars = ["org.apache.maven.wagon:wagon-http:${wagonHttpVersion}"]
+    List gruntPlugin = ["com.moowork.gradle:gradle-grunt-plugin:${gradleGruntVersion}"]
+    List tomcatPlugin = ["com.bmuschko:gradle-tomcat-plugin:${gradleTomcatVersion}"]
+    List restPlugin = ["org._10ne.gradle:rest-gradle-plugin:${gradleRestVersion}"]
+    List wsdl2javaPlugin = ["no.nils:wsdl2java:${wsdl2javaVersion}"]
+    List asciidoctorPlugin = ["org.asciidoctor:asciidoctor-gradle-plugin:${asciidoctorPluginVersion}"]
+
+    dependencies {
+        classpath awaitilityJar, springBootPlugin, osPackagePlugin, coberturaPlugin
+        classpath deployerJars, gruntPlugin, tomcatPlugin, apacheActiveMQ, restPlugin, wsdl2javaPlugin, asciidoctorPlugin
+        classpath "io.spring.gradle:dependency-management-plugin:${depManagementVersion}"
+    }
+
+}
+
+List acceptanceLibs = ["org.spockframework:spock-core:${spockVersion}",
+                       "org.spockframework:spock-spring:${spockVersion}",
+                       "org.codehaus.groovy:groovy-all:${groovyVersion}",
+                       "org.springframework:spring-test:${springVersion}",
+                       "com.jayway.jsonpath:json-path-assert:${jsonpathassertVersion}",
+                       "com.jayway.awaitility:awaitility:${awaitilityGroovyVersion}",
+                       "org.mockftpserver:MockFtpServer:${mockFtpServerVersion}"]
+List aop = ["org.aspectj:aspectjrt:${aspectjVersion}",
+            "org.aspectj:aspectjweaver:${aspectjVersion}",
+            "cglib:cglib-nodep:${cglibNodepVersion}"]
+List apacheHttp = ["org.apache.httpcomponents:httpclient:${apacheHttpClientVersion}",
+                   "org.apache.httpcomponents:httpcore:${apacheHttpClientVersion}"]
+List asciidoctorLibs = ["org.asciidoctor:asciidoctorj:${asciidoctorVersion}"]
+List camel = ["org.apache.camel:camel-mail:${camelVersion}",
+              "org.apache.camel:camel-core:${camelVersion}",
+              "org.apache.camel:camel-jaxb:${camelVersion}",
+              "org.apache.camel:camel-jackson:${camelVersion}",
+              "org.apache.camel:camel-spring:${camelVersion}",
+              "org.apache.camel:camel-http4:${camelVersion}",
+              "org.apache.camel:camel-ftp:${camelVersion}",
+              "org.apache.camel:camel-zipfile:${camelVersion}",
+              "org.apache.camel:camel-servlet:${camelVersion}",
+              "org.apache.camel:camel-metrics:${project.camelVersion}"]
+List camelTest = ["org.apache.camel:camel-test:${camelVersion}"]
+List camelXmlJson = ["org.apache.camel:camel-xmljson:${camelVersion}"]
+List cdi = ["javax.inject:javax.inject:${cdiVersion}"]
+List commons = ["org.apache.commons:commons-lang3:${commonsLang3Version}",
+                "commons-beanutils:commons-beanutils:${commonsBeanUtilsVersion}",
+                "org.apache.commons:commons-collections4:${commonsCollections4Version}",  // todo pick this or other collections framework
+                "net.sourceforge.collections:collections-generic:${commonsGenericsCollectionsVersion}",
+                "org.reflections:reflections:${reflectionsVersion}"]
+List commonsCollections = ["commons-collections:commons-collections:${commonsCollectionsVersion}"]
+List commonsIO = ["commons-io:commons-io:${commonsIOVersion}"]
+List commonsFileUploader=["commons-fileupload:commons-fileupload:${commonsFileUploadVersion}","commons-io:commons-io:${commonsIOVersion}"]
+List commonsValidator = ["commons-validator:commons-validator:${commonsValidator}"]
+
+List csv = ["net.sf.opencsv:opencsv:${opencsvVersion}"]
+List cxf = ["org.apache.cxf:cxf-rt-wsdl:${cxfVersion}",
+            "org.apache.cxf:cxf-core:${cxfVersion}",
+            "org.apache.cxf:cxf-rt-transports-http:${cxfVersion}",
+            "org.apache.cxf:cxf-rt-frontend-jaxws:${cxfVersion}",
+            "org.apache.cxf:cxf-rt-databinding-xmlbeans:${cxfVersion}"]
+List drools = ["org.drools:drools-core:${droolsVersion}",
+               "org.drools:drools-compiler:${droolsVersion}",
+               "org.drools:drools-templates:${droolsVersion}",
+               "org.drools:drools-verifier:${droolsVersion}",
+               "com.sun.xml.bind:jaxb-xjc:${jaxbXjcVersion}",
+               "com.google.protobuf:protobuf-java:2.5.0"]
+List dropbox = ["org.apache.camel:camel-dropbox:${camelVersion}"]
+List groovyAll = ["org.codehaus.groovy:groovy-all:${groovyVersion}"]
+List guava = ["com.google.guava:guava:${guavaVersion}"]
+List jackson = ["com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
+                "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+                "com.fasterxml.jackson.datatype:jackson-datatype-joda:${jacksonVersion}"]
+List javacsv = ["net.sourceforge.javacsv:javacsv:${javacsvVersion}"]
+List javers = ["org.javers:javers-core:${javersVersion}"]
+List jcTree = ["com.googlecode.jctree:jctree:${jcTreeVersion}"]
+List jms = ["javax.jms:jms:${jmsSpecVersion}",
+            "org.apache.camel:camel-jms:${camelVersion}",
+            "org.apache.activemq:activemq-core:${activemqVersion}",
+            "com.ibm:com.ibm.mq.headers:${wmqVersion}",
+            "com.ibm:com.ibm.mq:${wmqVersion}",
+            "com.ibm:com.ibm.mqjms:${wmqVersion}",
+            "com.ibm:com.ibm.dhbcore:${wmqVersion}",
+            "com.ibm:com.ibm.mq.jmqi:${wmqVersion}"]
+List joda = ["joda-time:joda-time:${jodaVersion}"]
+List json = ["org.json:json:${jsonVersion}"]
+List jsonAssert = ["org.skyscreamer:jsonassert:${jsonassertVersion}"]
+List jsonSimple = ["com.googlecode.json-simple:json-simple:${jsonSimpleVersion}"]
+List jsr305 = ["com.google.code.findbugs:jsr305:${jsr305Version}"]
+List logging = ["log4j:log4j:${log4jVersion}",
+                "org.slf4j:slf4j-log4j12:${slf4jVersion}",
+                "org.slf4j:slf4j-api:${slf4jVersion}"]
+List lombok = ["org.projectlombok:lombok:${lombokVersion}"]
+List mail = ["javax.mail:mail:${mailVersion}"]
+List mailTest = ["com.bitmechanic:dumbster:${dumbsterVersion}"]
+List math = ["org.apache.commons:commons-math:${commonsMathVersion}"]
+List math3 = ["org.apache.commons:commons-math3:${commonsMath3Version}"]
+List metrics = ["io.dropwizard.metrics:metrics-core:${dropWizardVersion}",
+                "io.dropwizard.metrics:metrics-annotation:${dropWizardVersion}",
+                "io.dropwizard.metrics:metrics-healthchecks:${dropWizardVersion}",
+                "io.dropwizard.metrics:metrics-servlets:${dropWizardVersion}",
+                "io.dropwizard.metrics:metrics-graphite:${dropWizardMetricsGraphiteVersion}",
+                "com.ryantenney.metrics:metrics-spring:${dropWizardMetricsSpringVersion}"]
+List mina = ["org.apache.mina:mina-core:${minaVersion}"]
+List mongo = ["org.mongodb:mongo-java-driver:${mongoVersion}",
+              "de.flapdoodle.embed:de.flapdoodle.embed.mongo:${embedMongoVersion}"]
+List quartz = ["org.quartz-scheduler:quartz:${quartzVersion}",
+               "org.springframework:spring-context-support:${springVersion}"]
+List quartzMongodb = ["com.novemberain:quartz-mongodb:${quartzMongodbVersion}"]
+List rql = ["cz.jirutka.rsql:rsql-parser:${rsqlVersion}"]
+List servicesTest = ["org.springframework:spring-test-mvc:${springTestVersion}"]
+List smooks = ["org.milyn:milyn-smooks-all:${smooksVersion}"]
+
+List smooksCamel = ["org.milyn:milyn-smooks-csv:${smooksVersion}",
+                    "org.milyn:milyn-smooks-edi:${smooksVersion}",
+                    "org.milyn:milyn-smooks-camel:${smooksVersion}",
+                    "org.milyn:milyn-smooks-fixed-length:${smooksVersion}",
+                    "org.milyn:milyn-smooks-templating:${smooksVersion}"]
+List spatial = ["com.spatial4j:spatial4j:${spatial4jVersion}"]
+List springBoot = ["org.springframework.boot:spring-boot-loader:${springBootVersion}",
+                   "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+                   "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}",
+                   "org.springframework.hateoas:spring-hateoas:${springHateoasVersion}",
+                   "org.springframework.plugin:spring-plugin-core:${springPluginVersion}",
+                   "org.springframework:spring-tx:${springVersion}"]
+List springFoxSwagger = ["io.springfox:springfox-swagger2:${springfoxSwaggerVersion}",
+                         "io.springfox:springfox-staticdocs:${springfoxSwaggerVersion}"]
+List springSecurity = ["org.springframework.security:spring-security-web:${springSecurityVersion}",
+                       "org.springframework.security:spring-security-config:${springSecurityVersion}"]
+//List springTest = ["org.springframework:spring-test:${springVersion}"]
+List swaggerAnnotations = ["io.swagger:swagger-annotations:${swaggerVersion}"]
+List unitTest = ["junit:junit:${junitVersion}",
+                 "junit:junit-dep:${junitVersion}",
+                 "org.mockito:mockito-core:${mockitoVersion}",
+                 "org.powermock:powermock-module-junit4:${powermockVersion}",
+                 "org.powermock:powermock-api-mockito:${powermockVersion}",
+                 "org.powermock:powermock-core:${powermockVersion}",
+                 "org.powermock:powermock-module-junit4:${powermockVersion}",
+                 "org.hamcrest:hamcrest-all:${hamcrestVersion}"]
+List validation = ["javax.validation:validation-api:${validationApiVersion}",
+                   "org.apache.bval:org.apache.bval.bundle:1.1.1",
+                   "org.apache.tomcat:tomcat-jasper-el:${tomcatVersion}"]
+List velocity = ["org.apache.velocity:velocity:${velocityVersion}",
+                 "org.springframework:spring-context-support:3.0.5.RELEASE"]  // todo: Remove non-consistent release of Spring
+List wiremock = ["com.github.tomakehurst:wiremock:${wiremockVersion}"]
+List xalan = ["xalan:xalan:2.7.2"]
+List xerces = ["org.apache.xerces:xercesImpl:${xercesVersion}"]
+List xmlApis = ["xml-apis:xml-apis:${xmlApisVersion}"]
+List geb = ["org.gebish:geb-core:${gebVersion}",
+            "org.gebish:geb-spock:${gebVersion}",
+            "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}",
+            "org.seleniumhq.selenium:selenium-support:${seleniumVersion}",
+            "io.github.bonigarcia:webdrivermanager:${webdriverManagerVersion}"]
+
+
+
+allprojects {
+    group 'com.yourname'
+    version '1.0-SNAPSHOT'
+
+    defaultTasks 'build'
+
+    apply plugin: 'idea'
+    idea {
+        module {
+            inheritOutputDirs = true
+        }
+    }
+
+    apply plugin: 'java'
+    compileJava {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+// ---------------------------------------------- Sonar Configuration ---------------------------------------------
+
+
+//apply plugin: 'sonar-runner'
+//
+//
+//sonarRunner {
+//    toolVersion = '2.4'
+//    forkOptions {
+//        maxHeapSize = '3072m'
+//    }
+//
+//    repositories {
+//        jcenter()
+//        mavenCentral()
+//        maven {
+//            url "https://plugins.gradle.org/m2/"
+//        }
+//    }
+//
+//    dependencies { classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1" }
+//
+//
+//    sonarProperties {
+//        property "sonar.junit.reportsPath", "$buildDir/test-results"
+//        property "sonar.jacoco.reportPath", "$rootDir/build/jacoco/test.exec"
+//        property "sonar.jacoco.itReportPath", "$rootDir/build/jacoco/acceptanceTest.exec"
+//        property "sonar.jacoco.excludes", "*/st/*"
+//        property "sonar.projectKey", groupId + ":" + artifactId
+//        property "sonar.projectName", artifactId
+//        property "sonar.projectDescription", name
+//        property "sonar.host.url", System.properties['sonar.host.url']
+//        property "sonar.login", System.properties['sonar.login']
+//        property "sonar.password", System.properties['sonar.password']
+//        property "sonar.jdbc.url", System.properties['sonar.jdbc.url']
+//        property "sonar.jdbc.username", System.properties['sonar.jdbc.username']
+//        property "sonar.jdbc.password", System.properties['sonar.jdbc.password']
+//        property "sonar.java.coveragePlugin", "jacoco"
+//        property "sonar.groovy.coveragePlugin", "jacoco"
+//        property "sonar.dynamicAnalysis", "reuseReports"
+//        property "sonar.exclusions", [
+//                "**/org/apache/**",
+//                "**/org/springframework/**",
+//                "**/static/**",
+//                "**/public/vendor/**",
+//                "**/public/js/**",
+//                "**/main/groovy/**/testutils/**"
+//        ]
+//    }
+//}
+//
+//
+//// ---------------------------------------------- Sonar Report ---------------------------------------------
+//
+//apply plugin: "org.10ne.rest"
+//
+//task sonarReport(type: org._10ne.gradle.rest.RestTask) {
+//    httpMethod = 'POST'
+//    uri = System.properties['sonar.report.url']
+//    requestBody = file('sonar-report.properties').bytes
+//    contentType = 'application/octet-stream'
+//}
+
+
+//project(':untitled') {
+//    apply plugin: 'java'
+//    compileJava {
+//        sourceCompatibility = '1.8'
+//        targetCompatibility = '1.8'
+//    }
+//
+//
+//}
+
+project(':interfaces') {
+    apply plugin: 'java'
+    compileJava {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    dependencies {
+        compile jcTree, jackson
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    compileJava {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    apply plugin: 'groovy'
+    apply plugin: 'jacoco'
+    apply plugin: 'maven'
+    apply plugin: "io.spring.dependency-management"
+
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+
+    jacoco {
+        toolVersion = "0.7.4.201502262128"
+        reportsDir = file("$buildDir/jacoco/reports")
+    }
+
+//    test {
+//        jacoco {
+//            append true
+//            destinationFile file("$rootDir/build/jacoco/test.exec")
+//            reports {
+//                html {
+//                    enabled true
+//                    destination "$buildDir/jacoco/test"
+//                }
+//            }
+//        }
+//        maxParallelForks = 4
+//
+//    }
+
+    sourceSets {
+        test {
+            java {
+                exclude 'acceptance/**'
+            }
+            groovy {
+                exclude 'acceptance/**'
+            }
+        }
+        acceptanceTest {
+            java {
+                srcDirs = ['src/test/java']
+                include 'acceptance/**'
+//                compileClasspath += main.output
+//                runtimeClasspath += main.output
+            }
+            groovy {
+                srcDirs = ['src/test/groovy']
+                include 'acceptance/**'
+//                compileClasspath += main.output
+//                runtimeClasspath += main.output
+            }
+            resources {
+                srcDirs = ['src/main/resources', 'src/test/resources']
+            }
+        }
+    }
+
+
+
+
+    ext {
+        SL4J_VERSION = '1.7.10'
+        JUNIT_VERSION = '4.11'
+    }
+//    dependencyManagement {
+//        imports {
+//            mavenBom 'io.spring.platform:platform-bom:1.1.2.RELEASE'
+//        }
+//    }
+
+    dependencies {
+        compile logging, guava, lombok, springBoot, xmlApis, cdi
+        compile commons, joda, aop, validation, metrics, jsr305
+
+
+
+
+        testCompile unitTest, acceptanceLibs, jsonAssert
+        testCompile "org.apache.poi:poi-ooxml:${project.poiVersion}"  // todo: What is this used for and why not have it in individual project
+
+        compile "org.slf4j:slf4j-api:${SL4J_VERSION}"
+        compile "org.slf4j:slf4j-log4j12:${SL4J_VERSION}"
+
+        testCompile "junit:junit:${JUNIT_VERSION}"
+        testCompile groovyAll
+    }
+}

@@ -1,0 +1,11 @@
+rootProject.name = 'vkj'
+
+include 'interfaces'
+include 'tests'
+include 'model'
+include 'repository'
+include 'webapp'
+include 'service'
+include 'controller'
+include 'learning'
+

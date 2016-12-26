@@ -34,15 +34,8 @@ public class BirthDayParadox {
     }
 
     public double getProbabilityOfTwoPersonHavingSameBirthDay(int numberOfPeople) {
-        double counter = 0;
-        for (int i = 0; i < 10000; i++) {
-            List<Birthday> birthdays = generateRandomBirthDays(numberOfPeople);
-            long countFrequencyNonUnique = countFrequencyNonUnique(birthdays);
-            if (countFrequencyNonUnique > 0) counter++;
-        }
-//
-//        IntStream.range(1,10000).map(it->generateRandomBirthDays(numberOfPeople)).map(this::countFrequencyNonUnique).filter(it->it > 0).
-        return counter/10000;
+        return IntStream.range(1, 10000).mapToObj(it -> generateRandomBirthDays(numberOfPeople)).map(this::countFrequencyNonUnique).filter(it -> it > 0).count()/10000.0;
+
     }
 }
 
